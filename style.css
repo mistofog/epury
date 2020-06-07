@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Arial", serif;
+    color: black;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+p{
+    margin-bottom: 0 !important;
+}
+/*Шапка*/
+.header{
+    width: 100%;
+    display: flex;
+    background-color: #35608B;
+    align-items: center;
+    justify-content: center;
+}
+
+.header p{
+    color: white;
+    font-size: 20px;
+}
+
+.logo{
+    width: 60px;
+    height: 60px;
+}
+/*Выбор сечения*/
+.section_size{
+    width: 100%;
+    display: flex;
+    margin-left: 0;
+    margin-top: 5px;
+}
+
+.section_size select{
+    width: 100%;
+    font-size: 20px;
+}
+/*Ввод силы*/
+.force_value{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+}
+
+.force_value h2{
+    min-width: 100%;
+    text-align: center;
+}
+/*Кнопка расчёта*/
+.count{
+    display: flex;
+    width: 180px;
+    margin: 5px auto;
+    justify-content: center;
+}
+/*Главный контейнер*/
+.content{
+    max-width: 375px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+/*Блок с эпюрами*/
+.main{
+    margin: auto;
+}
+
+.stand{
+    display: flex;
+}
+
+.stand img{
+    width:320px;
+    height: 174px;
+}
+/*Эпюры*/
+.normal_diagram, .moment_diagram, .deflection_diagram{
+    display: flex;
+    flex-wrap: wrap;
+    /* width: 230px; */
+    height: 174px;
+    align-content: center;
+    /* margin-left:32px; */
+    border: 1px black solid;
+    border-top: none;
+}
+h2{
+    width: 100%;
+    text-align: center;
+    margin: 15px 0;
+}
+.info{
+    max-width: 375px;
+}
+
+@media all and (min-device-width: 320px) and (max-device-width: 425px){
+    .col-6{
+        max-width: 100% !important;
+    }
+    .main{
+        max-width: 320px;
+    }
+}
+
+@media all and (min-device-width: 768px) and (max-device-width: 1024px){
+    .content{
+        max-width: 768px;
+    }
+    .stand img{
+        width:768px;
+        height: 417px;
+    }
+    .normal_diagram, .moment_diagram, .deflection_diagram{
+        display: flex;
+        flex-wrap: wrap;
+        width: 551px;
+        height: 174px;
+        align-content: center;
+        border: 1px black solid;
+        border-top: none;
+    }
+}
+

@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+</head>
+
+<body>
+<!-- Шапка-->
+<div class="header">
+    <img class="logo" src="img/logo.jpg">
+    <p>Система визуализации напряжений в балке</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-lg-5">
+
+            <div class="section_size my-4">
+                <select class="section custom-select">
+                    <option value="1">Сечение 10х25 мм</option>
+                    <option value="2">Сечение 25х10 мм</option>
+                </select>
+            </div>
+
+            <form>
+                <div class="formZ">
+                    <label for="sechZ">Введите высоту сечения</label>
+                    <input type="text" class="form-control" id="sechZ" aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted"></small>
+                </div>
+
+                <div class="formZ">
+                    <label for="sechY">ВВедите ширину сечения</label>
+                    <input type="text" class="form-control" id="sechY" aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">.</small>
+                </div>
+            </form>
+
+            <div class="mb-5">
+                <h2>Введите силу F, Н</h2>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"> F=</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control force" value="">
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button class="count btn btn-primary" type="button" onclick="f()">Провести расчёт</button>
+                </div>
+            </div>
+
+            <!--Полученые значения-->
+            <h2>Расчитанные значения</h2>
+            <div class="py-4">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">I=</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly="readonly" class="form-control inertia">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">σ=</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly="readonly" class="form-control sigma">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">f=</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly="readonly" class="form-control dislocation">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Mmax=</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly="readonly" class="form-control moment_max">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Mmin=</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly="readonly" class="form-control moment_min">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Wmax=</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly="readonly" class="form-control w_max">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Wmin=</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly="readonly" class="form-control w_min">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 offset-lg-1">
+            <!--Блок с эпюрами-->
+            <div class="main">
+                <!--Установка-->
+                <div class="text-center mb-5 pt-2">
+                    <img src="img/stand.jpg" width:350px>
+                </div>
+
+                <!--Эпюра нормальных напряжений-->
+                <div class="card normal_diagram mb-3 w-100">
+                    <div class="card-body">
+                        <canvas id="myChart_1"></canvas>
+                    </div>
+                </div>
+
+                <div class="card moment_diagram mb-3 w-100">
+                    <div class="card-body">
+                        <canvas id="myChart_2"></canvas>
+                    </div>
+                </div>
+                <div class="card deflection_diagram mb-3 w-100">
+                    <div class="card-body">
+                        <canvas id="myChart_3"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</body>
+
+</html>
