@@ -8,6 +8,9 @@
     box-sizing: border-box;
 }
 
+#haha {
+    background-image: url(1.jpg);
+}
 img {
     max-width: 100%;
 }
@@ -125,7 +128,7 @@ h2{
         display: flex;
         flex-wrap: wrap;
         width: 551px;
-        height: 174px;
+        height: 374px;
         align-content: center;
         border: 1px black solid;
         border-top: none;
